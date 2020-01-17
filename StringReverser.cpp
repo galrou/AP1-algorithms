@@ -3,6 +3,7 @@
 //
 
 #include <algorithm>
+#include <iostream>
 #include "StringReverser.h"
 
 /**
@@ -16,6 +17,7 @@ string StringReverser::solve(string problem) {
 }
 
 StringReverser *StringReverser::getClone() {
+    cout<<"before reverser"<<endl;
     return new StringReverser();
 }
 

@@ -9,6 +9,7 @@
 #include <unordered_map>
 #include <fstream>
 #include <string>
+#include <iostream>
 #include "CacheManager.h"
 using namespace std;
 template<class T>
@@ -129,7 +130,8 @@ public:
         return  obj;
     };
     virtual CacheManager<string,T>* getClone(){
-        return new FileCacheManager(5);
+       //cout<<"befor cm"<<endl;
+        return new FileCacheManager<string>(5);
     }
 };
 

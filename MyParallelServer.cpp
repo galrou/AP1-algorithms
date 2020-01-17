@@ -46,7 +46,7 @@ void MyParallelServer::open(int port, ClientHandler *clientHandler) {
     timeval timeout;
     int client_socket;
     //rememeber to set to 2 mins
-    timeout.tv_sec = 1;
+    timeout.tv_sec = 120;
     timeout.tv_usec = 0;
 
     setsockopt(socketfd, SOL_SOCKET, SO_RCVTIMEO, (char *) &timeout, sizeof(timeout));
@@ -83,7 +83,7 @@ void MyParallelServer::open(int port, ClientHandler *clientHandler) {
 }
 
 void MyParallelServer::helper(int client_socket, ClientHandler *clientHandler) {
-    clientHandler->handleClient(client_socket);
+    clientHandler->getClone()->handleClient(client_socket);
 
 }
 

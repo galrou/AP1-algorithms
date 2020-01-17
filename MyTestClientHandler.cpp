@@ -96,11 +96,12 @@ string MyTestClientHandler::readLineFromSocket(int clientSocket) {
 
         line += currentChar;
     }
-    cout<<"out of while true in mytest"<<endl;
+   // cout<<"out of while true in mytest"<<endl;
 
     return line;
 }
 
 ClientHandler *MyTestClientHandler::getClone() {
+   // cout<<"before mytest clone"<<endl;
     return new MyTestClientHandler(this->cacheManager->getClone(),this->solver->getClone());
 }
