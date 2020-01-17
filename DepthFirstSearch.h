@@ -58,9 +58,7 @@ public:
             }
 
             //check if the state contains in visited
-            if(isContainedInVisited(currState)){
-                continue;
-            }
+
 
 
 
@@ -75,6 +73,7 @@ public:
                     child->setCost(child->getCost() + child->getCameFrom()->getCost()); // initial the  cost
                     this->statesStack.push(child);
                     this->numberOfNodesEvaluated++;
+
                 }
             }
         }

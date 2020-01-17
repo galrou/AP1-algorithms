@@ -10,7 +10,7 @@
 class BreadthFirstSearch:public Searcher {
 
 private:
-    vector<State*> visited;
+    unordered_set<State*> visited;
     queue<State*> statesQueue;
 
 public:
@@ -19,46 +19,43 @@ public:
         vector<State*>path;
 
         State *startingPoint = searchable->getInitialState();
-        State *currState;
+        this->visited = unordered_set<State*>();
         vector<State *> children;
         this->statesQueue.push(startingPoint);
         this->numberOfNodesEvaluated++;
+        this->visited.insert(startingPoint);
 
         // while q is not empty
         while (!this->statesQueue.empty()) {
+          // cout<<"jkj"<<endl;
             // Remove the first state from q
             State *currState = this->statesQueue.front();
+            //cout<<"before pop"<<endl;
             this->statesQueue.pop();
-
+           // cout<<"after pop"<<endl;
 
 
             if (*currState == *(searchable->getGoalState())) {
-
                 vector<State *> path = this->reversePath(this->backTrace(searchable, currState));
-
                 //this->resetSearcher();
-
                 return path;
             }
-
-            //check if the state contains in visited
-            if(isContainedInVisited(currState)){
-                continue;
-            }
-
-            this->visited.push_back(currState);
-
             vector<State*> children = searchable->getAllPossibleStates(currState);
 
-            for (State *child : children) {
+            for (auto *child : children) {
+              //  cout<<"kk"<<endl;
 
                 if (!isContainedInVisited(child)) {
-                    this->numberOfNodesEvaluated++;
                     child->setCameFrom(currState);
                     child->setCost(child->getCost() + child->getCameFrom()->getCost()); // initial the  cost
                     this->statesQueue.push(child);
+                  //  cout<<"ib"<<endl;
+                    this->visited.insert(child);
+                    //cout<<"hh"<<endl;
+                    this->numberOfNodesEvaluated++;
                 }
             }
+            //cout<<"jj"<<endl;
         }
 
         return path;
@@ -71,9 +68,11 @@ public:
     bool isContainedInVisited(State* currState){
         for(State* state: visited) {
             if(*state == *currState){
+               // cout<<"true"<<endl;
                 return true;
             }
         }
+       // cout<<"false"<<endl;
         return false;
     }
 

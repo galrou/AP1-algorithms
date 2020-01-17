@@ -154,7 +154,7 @@ Matrix getMatrixObject(string fileName) {
 using namespace std;
 int main() {
 
-    Matrix mat = getMatrixObject("matrix_test.txt");
+    Matrix mat = getMatrixObject("Matrix16x16.txt");
 
 //    for (int i = 0; i < mat.getRow(); i++) {
 //        for (int j = 0; j < mat.getCol(); j++) {
@@ -196,18 +196,43 @@ int main() {
  * לשנות את הטיפוס פשוט לפי שם ההאלגוריתם ואז יודפס המשקל הכולל של המסלול הקצר ביותר
  */
     BreadthFirstSearch algorithm;
-
+    cout<<"BFS:"<<endl;
     vector<State*> ansVector= algorithm.search(&mat);
     cout<<"Shortest path weight:"<<endl;
     cout<<ansVector[ansVector.size()-1]->getCost()<<endl;
-    cout<<"\nNumber of evaluated nodes:"<<endl;
+    cout<<"Number of evaluated nodes:"<<endl;
     cout<<algorithm.getNumberOfNodesEvaluated()<<endl;
-    //cout<<p<<endl;
-    CacheManager<string, string> *cacheManager = new  FileCacheManager<string>(3);
-    StringReverser *sr=new StringReverser();
-    MyParallelServer mss{};
-    MyTestClientHandler *ch=new MyTestClientHandler(cacheManager,sr);
-    mss.open(8081,ch);
+//    //cout<<p<<endl;
+//    CacheManager<string, string> *cacheManager = new  FileCacheManager<string>(3);
+//    StringReverser *sr=new StringReverser();
+//    MyParallelServer mss{};
+//    MyTestClientHandler *ch=new MyTestClientHandler(cacheManager,sr);
+//    mss.open(8081,ch);
+
+    DepthFirstSearch algorithm1;
+    cout<<"\nDFS:"<<endl;
+    vector<State*> ansVector1= algorithm1.search(&mat);
+    cout<<"Shortest path weight:"<<endl;
+    cout<<ansVector1[ansVector1.size()-1]->getCost()<<endl;
+    cout<<"Number of evaluated nodes:"<<endl;
+    cout<<algorithm1.getNumberOfNodesEvaluated()<<endl;
+
+    BestFirstSearch algorithm2;
+    cout<<"\nBestFS:"<<endl;
+    vector<State*> ansVector2= algorithm2.search(&mat);
+    cout<<"Shortest path weight:"<<endl;
+    cout<<ansVector2[ansVector2.size()-1]->getCost()<<endl;
+    cout<<"Number of evaluated nodes:"<<endl;
+    cout<<algorithm2.getNumberOfNodesEvaluated()<<endl;
+
+
+    AStar algorithm3;
+    cout<<"\nAStar:"<<endl;
+    vector<State*> ansVector3= algorithm3.search(&mat);
+    cout<<"Shortest path weight:"<<endl;
+    cout<<ansVector3[ansVector3.size()-1]->getCost()<<endl;
+    cout<<"Number of evaluated nodes:"<<endl;
+    cout<<algorithm3.getNumberOfNodesEvaluated()<<endl;
     //std::this_thread::sleep_for(std::chrono::milliseconds(120000000));
 
 
