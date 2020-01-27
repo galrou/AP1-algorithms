@@ -14,4 +14,5 @@ Multi-Threading
 Usage of C++ STL, I/O
 Usage of OOP Design Patterns: Bridge, Object Adapter...
 
-# Running th tests
+# Running the tests
+#Finding a path in KxN Graphs:
