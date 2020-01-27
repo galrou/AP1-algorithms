@@ -30,6 +30,7 @@ Usage of OOP Design Patterns: Bridge, Object Adapter...
 this means the program will find a path from (0,0) to (3,3) vertices in this spesific graph. -1 means that this vertix isn't connected to any other vertix.
 
 The default searching algorithm (and our favorite) is Best First Search which returns the shortest path between two vertices. That said, switching to another searching algorithm can be easily changed
-#Authors
+# Authors
 Idan bazel
+
 Gal rouash
